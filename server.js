@@ -14,11 +14,12 @@ wss.on('connection', (ws) => {
     console.log(`수신된 메시지: ${message}`);
     console.log('브로드캐스트 시작');
 
+
     // 메시지를 브로드캐스트 (보낸 클라이언트 제외)
     wss.clients.forEach((client) => {
       console.log(`클라이언트 상태: ${client.readyState}, 자신 여부: ${client === ws}`);
       if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message); // 메시지 전달
+        client.send(`${message}`); // 메시지 전달
         console.log('메시지 전달 완료');
       }
     });
