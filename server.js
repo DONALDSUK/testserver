@@ -13,9 +13,9 @@ wss.on('connection', (ws) => {
   ws.on('message', (message) => {
     console.log(`수신된 메시지: ${message}`);
 
-    // 모든 클라이언트에게 메시지 브로드캐스트
+    // 보낸 클라이언트를 제외하고 메시지 브로드캐스트
     wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
         client.send(`서버에서 전달: ${message}`);
       }
     });
