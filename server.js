@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
   res.send('WebSocket 서버가 실행 중입니다.');
 });
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
 server.listen(PORT, () => {
   console.log(`서버가 http://localhost:${PORT}에서 실행 중입니다.`);
 });
